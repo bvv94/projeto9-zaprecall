@@ -26,10 +26,9 @@ export default function App() {
 
       <Container>
         <NavBar />
-        <Deck cards={cards} userCont={userCont} />
+        <Deck cards={cards} cont={cont} userCont={userCont} />
         <Footer cont={cont} cards={cards} />
       </Container>
-
 
     </>
   );
@@ -37,8 +36,8 @@ export default function App() {
 
 const Container = styled.div`
   background-color: #FB6B6B;
-  width: 100vw;
-  min-height: 100vh;
+  width: auto;
+  min-height: 667px;
   display: flex;
   flex-direction: column;
   align-items: center;
