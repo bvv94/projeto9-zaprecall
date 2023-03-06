@@ -18,6 +18,7 @@ export default function Deck({ cards, cont, setCont }) {
                     colour={colour} setColour={setColour}
                     cont={cont} setCont={setCont} text={text} useText={setText} />)}
         </>
+        
     )
 
 

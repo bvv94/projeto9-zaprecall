@@ -74,7 +74,8 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
                     </CardScreen>) :
                     (<CardScreenEnd icon={icon}>
                         <p data-test="flashcard-text">{`${text}` + (index + 1)}</p>
-                        <img data-test="no-icon zap-icon partial-icon" src={Icon()}
+                        <img data-test="no-icon" src={Icon()}
+                        //  zap-icon partial-icon
                             alt="play"
                         />
                     </CardScreenEnd>)
