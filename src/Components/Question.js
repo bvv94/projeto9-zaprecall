@@ -15,7 +15,7 @@ export default function Question({ useIcone, imagem, icone, index, text, useText
 
     card.forEach(card, i => {
         if (index === i){
-            newtext = card.question
+            // newtext = card.question
         }
     });
     useText(newtext)   

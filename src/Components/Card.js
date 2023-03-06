@@ -3,20 +3,21 @@ import setaplay from "../assets/seta_play.png"
 import setavirar from "../assets/seta_virar.png"
 import { useState } from "react"
 
-export default function Card({ index, card, cont, useCont, text, useText }) {
+export default function Card({ index, card, cont, setCont, text, useText }) {
 
     const [status, setStatus] = useState(0);
     const [turned, setTurned] = useState([])
     const [image, setImage] = useState(setaplay);
+    const [cardAnswered, setCardAnswered] = useState(false)
 
     function play() {
 
-       const newstatus = status +1; 
-       setStatus(newstatus)
-       setImage(setavirar)
+        const newstatus = status + 1;
+        setStatus(newstatus)
+        setImage(setavirar)
         // useText(card.question)
-        console.log(image)
-        console.log(status)
+        // console.log(image)
+        // console.log(status)
         // Question({ image, text, useText, card, useImage })
         // if (!turned.includes(card.question)) {
         //     let newstatus = status + 1;
@@ -25,35 +26,53 @@ export default function Card({ index, card, cont, useCont, text, useText }) {
         //     
         // }
     }
+    function answer() {
+        const newstatus = status + 1;
+        setStatus(newstatus)
+    }
 
+    function answered() {
+        setCardAnswered(true)
+        console.log("Entrou Answererd")
+        setStatus(0)
+        // setCont (cont + 1)
+    }
 
     switch (status) {
         case 0: // Pergunta X
             // console.log("Pergunta X")
             return (
                 <>
-                    <CardScreen>
+                    {!cardAnswered ? 
+                    (<CardScreen>
                         <p>{`${text}` + (index + 1)}</p>
                         <img src={image}
                             alt="play"
                             onClick={play}
                         />
-                    </CardScreen>
+                    </CardScreen>) :
+                    (<CardScreen>
+                        <p>{`${text}` + (index + 1)}</p>
+                        <img src={image}
+                            alt="play"
+                        />
+                    </CardScreen>)
+                    }
                 </>)
         case 1: // Pergunta da Card
-            console.log("Pergunta da Card")
+            // console.log("Pergunta da Card")
             return (
                 <>
                     <CardScreenQ>
                         <p>{card.question}</p>
                         <img src={image}
                             alt="Virar Card"
-                            // onClick={() => play(image)}
+                            onClick={answer}
                         />
                     </CardScreenQ>
                 </>)
         case 2: // Resposta da Card
-            console.log("Resposta")
+            // console.log("Resposta")
             return (
                 <>
                     <CardScreenAns>
@@ -63,9 +82,9 @@ export default function Card({ index, card, cont, useCont, text, useText }) {
                         {/* play(card) */}
 
                         <Answers>
-                            <Red>Não lembrei</Red>
-                            <Yellow>Quase não lembrei</Yellow>
-                            <Green>Zap!</Green>
+                            <Red onClick={answered}>Não lembrei</Red>
+                            <Yellow onClick={answered}>Quase não lembrei</Yellow>
+                            <Green onClick={answered}>Zap!</Green>
                         </Answers>
                     </CardScreenAns>
                 </>)
@@ -105,25 +124,25 @@ const Green = styled.button`
     border-color: #2FBE34;
 `
 const CardScreen = styled.div`
-
-            font-family: 'recursive';
-            font-size: 16px;
-            font-weight: 700;
-            width: 300px;
-            height: 35px;
-            background-color: #FFFFFF;
-            margin: 12px;
-            padding: 15px;
-            box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            ion-icon {
-                width: 20px;
-            height: 23px;
+        
+    font-family: 'recursive';
+    font-size: 16px;
+    font-weight: 700;
+    width: 300px;
+    height: 35px;
+    background-color: #FFFFFF;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ion-icon {
+        width: 20px;
+        height: 23px;
     }
-            img {
+        img {
                 width: 15px;
             height: 18px;
     }
