@@ -5,8 +5,8 @@ export default function Footer ({cont, cards}){
     const perguntasrespondidas = cards.length;
 
     return (
-        <Barra>
-            <p data-test="footer" >{cont}/{perguntasrespondidas} CONCLUÍDOS</p>
+        <Barra data-test="footer">
+            <p>{cont}/{perguntasrespondidas} CONCLUÍDOS</p>
         </Barra>
     )
 }
