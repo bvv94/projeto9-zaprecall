@@ -7,7 +7,7 @@ export default function Deck({ cards, cont, setCont }) {
 
     const [visible, setVisible] = useState(true);
     const [text, setText] = useState("Pergunta ");
-    
+    const [colour, setColour] = useState("")
     const [icone, setIcone] = useState(0);
     
 
@@ -21,6 +21,7 @@ export default function Deck({ cards, cont, setCont }) {
                 <> 
                     {cards.map((card, index) =>
                         <Card key={index} index={index} card={card}
+                        colour={colour} setColour={setColour}
                         cont={cont} setCont={setCont} text={text} useText={setText}/>)}
                 </>
                 

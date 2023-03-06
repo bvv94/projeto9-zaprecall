@@ -2,13 +2,18 @@ import styled from "styled-components"
 import setaplay from "../assets/seta_play.png"
 import setavirar from "../assets/seta_virar.png"
 import { useState } from "react"
+import red from "../assets/icone_erro.png"
+import yellow from "../assets/icone_quase.png"
+import green from "../assets/icone_certo.png"
 
-export default function Card({ index, card, cont, setCont, text, useText }) {
+export default function Card({ colour, setColour, index, card, cont, setCont, text, useText }) {
 
+    // const [colour, setColour] = useState("")
     const [status, setStatus] = useState(0);
-    const [turned, setTurned] = useState([])
+    const [icon, setIcon] = useState("no")
     const [image, setImage] = useState(setaplay);
     const [cardAnswered, setCardAnswered] = useState(false)
+    
 
     function play() {
 
@@ -31,12 +36,28 @@ export default function Card({ index, card, cont, setCont, text, useText }) {
         setStatus(newstatus)
     }
 
-    function answered() {
+    function answered(props) {
         setCardAnswered(true)
         console.log("Entrou Answererd")
+        console.log(props)
         setStatus(0)
-        // setCont (cont + 1)
+        setCont (cont + 1)
+        setIcon(props)
     }
+
+    function Icon(){
+        switch (icon){
+            case "green":
+                return (green)
+            case "yellow":
+                return (yellow)
+            case "red":
+                return (red)
+            default : 
+                return setaplay
+        }
+    }
+
 
     switch (status) {
         case 0: // Pergunta X
@@ -46,17 +67,17 @@ export default function Card({ index, card, cont, setCont, text, useText }) {
                     {!cardAnswered ? 
                     (<CardScreen>
                         <p>{`${text}` + (index + 1)}</p>
-                        <img src={image}
+                        <img src={Icon()}
                             alt="play"
                             onClick={play}
                         />
                     </CardScreen>) :
-                    (<CardScreen>
+                    (<CardScreenEnd>
                         <p>{`${text}` + (index + 1)}</p>
-                        <img src={image}
+                        <img src={Icon()}
                             alt="play"
                         />
-                    </CardScreen>)
+                    </CardScreenEnd>)
                     }
                 </>)
         case 1: // Pergunta da Card
@@ -82,9 +103,9 @@ export default function Card({ index, card, cont, setCont, text, useText }) {
                         {/* play(card) */}
 
                         <Answers>
-                            <Red onClick={answered}>Não lembrei</Red>
-                            <Yellow onClick={answered}>Quase não lembrei</Yellow>
-                            <Green onClick={answered}>Zap!</Green>
+                            <Red c={"red"} onClick={() => answered("red")}>Não lembrei</Red>
+                            <Yellow c={"yellow"} onClick={() => answered("yellow")}>Quase não lembrei</Yellow>
+                            <Green c={"green"} onClick={() => answered("green")}>Zap!</Green>
                         </Answers>
                     </CardScreenAns>
                 </>)
@@ -123,8 +144,31 @@ const Green = styled.button`
     background-color: #2FBE34;
     border-color: #2FBE34;
 `
-const CardScreen = styled.div`
-        
+const CardScreen = styled.div`        
+    font-family: 'recursive';
+    font-size: 16px;
+    font-weight: 700;
+
+    width: 300px;
+    height: 35px;
+    background-color: #FFFFFF;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ion-icon {
+        width: 20px;
+        height: 23px;
+    }
+        img {
+            width: 15px;
+            height: 18px;
+    }
+`
+const CardScreenEnd = styled.div`
     font-family: 'recursive';
     font-size: 16px;
     font-weight: 700;
@@ -142,11 +186,8 @@ const CardScreen = styled.div`
         width: 20px;
         height: 23px;
     }
-        img {
-                width: 15px;
-            height: 18px;
-    }
 `
+
 const CardScreenQ = styled.div`
 width: 300px;
   margin: 12px;
