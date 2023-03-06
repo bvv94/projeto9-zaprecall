@@ -1,6 +1,5 @@
 import { useState } from "react"
 import styled from "styled-components"
-import Question from "./Question";
 import Card from "./Card";
 
 export default function Deck({ cards, cont, setCont }) {
@@ -20,7 +19,7 @@ export default function Deck({ cards, cont, setCont }) {
             return (
                 <> 
                     {cards.map((card, index) =>
-                        <Card key={index} index={index} card={card}
+                        <Card data-test="flashcard" key={index} index={index} card={card}
                         colour={colour} setColour={setColour}
                         cont={cont} setCont={setCont} text={text} useText={setText}/>)}
                 </>

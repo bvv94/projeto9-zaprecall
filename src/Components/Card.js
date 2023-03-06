@@ -66,15 +66,15 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
                 <>
                     {!cardAnswered ? 
                     (<CardScreen>
-                        <p>{`${text}` + (index + 1)}</p>
-                        <img src={Icon()}
+                        <p data-test="flashcard-text">{`${text}` + (index + 1)}</p>
+                        <img data-test="play-btn" src={Icon()}
                             alt="play"
                             onClick={play}
                         />
                     </CardScreen>) :
                     (<CardScreenEnd icon={icon}>
-                        <p>{`${text}` + (index + 1)}</p>
-                        <img src={Icon()}
+                        <p data-test="flashcard-text">{`${text}` + (index + 1)}</p>
+                        <img data-test="no-icon zap-icon partial-icon" src={Icon()}
                             alt="play"
                         />
                     </CardScreenEnd>)
@@ -85,8 +85,8 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
             return (
                 <>
                     <CardScreenQ>
-                        <p>{card.question}</p>
-                        <img src={image}
+                        <p data-test="flashcard-text">{card.question}</p>
+                        <img data-test="turn-btn" src={image}
                             alt="Virar Card"
                             onClick={answer}
                         />
@@ -97,15 +97,15 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
             return (
                 <>
                     <CardScreenAns>
-                        <p>{card.answer}</p>
+                        <p data-test="flashcard-text">{card.answer}</p>
 
                         {/* onClick={() => console.log("respondeu") */}
                         {/* play(card) */}
 
                         <Answers>
-                            <Red c={"red"} onClick={() => answered("red")}>Não lembrei</Red>
-                            <Yellow c={"yellow"} onClick={() => answered("yellow")}>Quase não lembrei</Yellow>
-                            <Green c={"green"} onClick={() => answered("green")}>Zap!</Green>
+                            <Red data-test="no-btn" c={"red"} onClick={() => answered("red")}>Não lembrei</Red>
+                            <Yellow data-test="partial-btn" c={"yellow"} onClick={() => answered("yellow")}>Quase não lembrei</Yellow>
+                            <Green data-test="zap-btn" c={"green"} onClick={() => answered("green")}>Zap!</Green>
                         </Answers>
                     </CardScreenAns>
                 </>)
@@ -145,7 +145,8 @@ const Green = styled.button`
     border-color: #2FBE34;
 `
 const CardScreen = styled.div`  
-    color: #333333;   
+    color: #333333;
+  
     font-family: 'recursive';
     font-size: 16px;
     font-weight: 700;
