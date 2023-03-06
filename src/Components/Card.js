@@ -65,16 +65,16 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
             return (
                 <>
                     {!cardAnswered ? 
-                    (<CardScreen>
+                    (<CardScreen data-test="flashcard">
                         <p data-test="flashcard-text">{`${text}` + (index + 1)}</p>
                         <img data-test="play-btn" src={Icon()}
                             alt="play"
                             onClick={play}
                         />
                     </CardScreen>) :
-                    (<CardScreenEnd icon={icon}>
+                    (<CardScreenEnd icon={icon} data-test="flashcard">
                         <p data-test="flashcard-text">{`${text}` + (index + 1)}</p>
-                        <img data-test="no-icon" src={Icon()}
+                        <img data-test="no-icon zap-icon partial-icon" src={Icon()}
                         //  zap-icon partial-icon
                             alt="play"
                         />
@@ -85,7 +85,7 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
             // console.log("Pergunta da Card")
             return (
                 <>
-                    <CardScreenQ>
+                    <CardScreenQ data-test="flashcard">
                         <p data-test="flashcard-text">{card.question}</p>
                         <img data-test="turn-btn" src={image}
                             alt="Virar Card"
@@ -97,7 +97,7 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
             // console.log("Resposta")
             return (
                 <>
-                    <CardScreenAns>
+                    <CardScreenAns data-test="flashcard">
                         <p data-test="flashcard-text">{card.answer}</p>
 
                         {/* onClick={() => console.log("respondeu") */}
