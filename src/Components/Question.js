@@ -4,32 +4,33 @@ import setavirar from "../assets/seta_virar.png"
 // import Resposta from "./Resposta"
 
 
-export default function Question({ useIcone, imagem, icone, index, texto, useTexto, cards, useImagem }) {
+export default function Question({ useIcone, imagem, icone, index, text, useText, card, useImagem }) {
 
     const newtext=""
     console.log("Textoperguntaimprimir")
+    console.log (card)
 
     useImagem(setavirar)
-    useTexto()
+    useText()
 
-    cards.forEach(cards, i => {
+    card.forEach(card, i => {
         if (index === i){
-            newtext = cards.question
+            newtext = card.question
         }
     });
-    useTexto(newtext)
+    useText(newtext)   
 
 
     return (
         <> chegou na pergunta
-            {cards.map((card, index) =>
+            {card.map((card, index) =>
                 <Cartao key={index}>
                     <p>{card.question}</p>
                     {/* <p>{o.pergunta}</p> */}
                     {/* <p>{o.resposta}</p> */}
                     <img src={imagem}
                         alt="play"
-                        onClick={() => Question({ index, imagem, icone, useIcone, texto, useTexto, cards, useImagem })}
+                        // onClick={() => Question({ index, imagem, icone, useIcone, text, useText, cards, useImagem })}
                     />
                 </Cartao>)}
 

@@ -18,7 +18,8 @@ export default function App() {
     { question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
     { question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
   ]
-  const [cont, userCont] = useState(0)
+  const [cont, setCont] = useState(0)
+  
 
   return (
     <>
@@ -26,7 +27,7 @@ export default function App() {
 
       <Container>
         <NavBar />
-        <Deck cards={cards} cont={cont} userCont={userCont} />
+        <Deck cards={cards} cont={cont} setCont={setCont} />
         <Footer cont={cont} cards={cards} />
       </Container>
 
