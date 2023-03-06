@@ -72,7 +72,7 @@ export default function Card({ colour, setColour, index, card, cont, setCont, te
                             onClick={play}
                         />
                     </CardScreen>) :
-                    (<CardScreenEnd>
+                    (<CardScreenEnd icon={icon}>
                         <p>{`${text}` + (index + 1)}</p>
                         <img src={Icon()}
                             alt="play"
@@ -144,11 +144,11 @@ const Green = styled.button`
     background-color: #2FBE34;
     border-color: #2FBE34;
 `
-const CardScreen = styled.div`        
+const CardScreen = styled.div`  
+    color: #333333;   
     font-family: 'recursive';
     font-size: 16px;
     font-weight: 700;
-
     width: 300px;
     height: 35px;
     background-color: #FFFFFF;
@@ -186,6 +186,18 @@ const CardScreenEnd = styled.div`
         width: 20px;
         height: 23px;
     }
+    text-decoration:${props => props.icon === "no" ? "none": "line-through"} ;
+    color: ${props => {
+        switch (props.icon){
+            case "green":
+                return "#2FBE34"
+            case "yellow":
+                return "#FF922E"
+            case "red":
+                return "#FF3030"
+            default : 
+                return "#333333"
+        }}};
 `
 
 const CardScreenQ = styled.div`
